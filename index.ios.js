@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import Main from './App/Components/Main.ios.js'
-import Dashboard from './App/Components/Dashboard.ios.js'
 
 var styles = StyleSheet.create({
 	container: {
@@ -24,7 +23,7 @@ class githubNotetaker extends Component {
 		<NavigatorIOS
 			style={styles.container}
 			initialRoute={{
-				title: 'Github Note Taker',
+				title: 'Github Notetaker',
 				component: Main
 			}} />
 	);
