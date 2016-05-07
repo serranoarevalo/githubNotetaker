@@ -11,6 +11,7 @@ import {
 import api from '../Utils/api'
 import Profile from './Profile.ios.js'
 import Repositories from './Repositories.ios.js'
+import Notes from './Notes.ios.js'
 
 var styles = StyleSheet.create({
 	container: {
@@ -68,7 +69,18 @@ class Dashboard extends Component{
 			})
 	}
 	goToNotes() {
-		console.log('w/e')
+		api.getNotes(this.props.userInfo.login)
+			.then((res) => {
+				res = res || {};
+				this.props.navigator.push({
+					title: 'Notes',
+					component: Notes,
+					passProps: {
+						notes: res,
+						userInfo: this.props.userInfo
+					}
+				})
+			})
 	}
 	render(){
 		return (
