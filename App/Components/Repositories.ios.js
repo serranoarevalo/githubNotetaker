@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Badge from './Badge.ios.js'
 import Separator from '../Helpers/Separator.ios.js'
+import Web_View from '../Helpers/WebView.ios.js'
 import {
 	ScrollView,
 	Text,
@@ -36,7 +37,11 @@ const styles = StyleSheet.create({
 
 class Repositories extends Component{
 	openPage(url){
-		console.log('the url is', url)
+		this.props.navigator.push({
+			component: Web_View,
+			title: 'Web View',
+			passProps: {url}
+		})
 	}
 	render(){
 		const {repos} = this.props
