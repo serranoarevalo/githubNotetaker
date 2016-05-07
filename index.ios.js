@@ -7,7 +7,8 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-import Main from './Components/Main.ios.js'
+import Main from './App/Components/Main.ios.js'
+import Dashboard from './App/Components/Dashboard.ios.js'
 
 var styles = StyleSheet.create({
 	container: {
@@ -23,7 +24,7 @@ class githubNotetaker extends Component {
 		<NavigatorIOS
 			style={styles.container}
 			initialRoute={{
-				title: 'Tienda Go!',
+				title: 'Github Note Taker',
 				component: Main
 			}} />
 	);

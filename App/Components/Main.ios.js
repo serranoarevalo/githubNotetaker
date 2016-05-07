@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import api from '../Utils/api'
 import {
 	View,
 	Text,
@@ -8,6 +9,7 @@ import {
 	ActivityIndicatorIOS
 } from 'react-native'
 
+import Dashboard from './Dashboard.ios.js'
 
 var styles = StyleSheet.create({
 	mainContainer: {
@@ -70,11 +72,33 @@ class Main extends Component{
 	}
 	handleSubmit() {
 		this.setState({
-			loading: true
+			isLoading: true
 		});
-		console.log('Submit', this.state.username)
+		api.getBio(this.state.username)
+			.then((res) => {
+				if(res.message === 'Not Found'){
+					this.setState({
+						error: 'User not found',
+						isLoading: false
+					})
+				} else {
+					this.props.navigator.push({
+						title: res.name || "Select an Option",
+						component: Dashboard,
+						passProps: {userInfo: res}
+					})
+					this.setState({
+						isLoading: false,
+						error: false,
+						username: ''
+					})
+				}
+			})
 	}
 	render(){
+		const showErr = (
+			this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+		)
 		return(
 			<View style={styles.mainContainer}>
 				<Text style={styles.title}>Search for a Github User</Text>
@@ -83,14 +107,20 @@ class Main extends Component{
 					value={this.state.username}
 					onChange={this.handleChange.bind(this)} />
 				<TouchableHighlight
-					style={styles.button}
+					style={styles .button}
 					onPress={this.handleSubmit.bind(this)}
 					underlayColor="white">
 						<Text style={styles.buttonText}> Search! </Text>
 				</TouchableHighlight>
+				<ActivityIndicatorIOS
+					animating={this.state.isLoading}
+					color="#111"
+					size="large">
+				</ActivityIndicatorIOS>
+				{showErr}
 			</View>
 		)
 	}
 };
 
-module.exports = Main;
+export default Main
