@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Badge from './Badge.ios.js'
+import Separator from '../Helpers/Separator.ios.js'
 import {
 	View,
 	Text,
@@ -46,7 +47,9 @@ class Profile extends Component{
 							<Text style={styles.rowTitle}> {this.getRowTitle(userInfo, item)} </Text>
 							<Text style={styles.rowContent}> {userInfo[item]} </Text>
 						</View>
+						<Separator />
 					</View>
+
 				)
 			}
 		})

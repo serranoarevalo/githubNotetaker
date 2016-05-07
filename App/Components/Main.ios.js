@@ -82,7 +82,6 @@ class Main extends Component{
 						isLoading: false
 					})
 				} else {
-					console.log(res.name)
 					this.props.navigator.push({
 						title: res.name || "Select an Option",
 						component: Dashboard,
