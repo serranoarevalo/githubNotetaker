@@ -8,7 +8,9 @@ import {
 	Image
 } from 'react-native'
 
+import api from '../Utils/api'
 import Profile from './Profile.ios.js'
+import Repositories from './Repositories.ios.js'
 
 var styles = StyleSheet.create({
 	container: {
@@ -53,7 +55,17 @@ class Dashboard extends Component{
 		})
 	}
 	goToRepos() {
-		console.log('w/e')
+		api.getRepos(this.props.userInfo.login)
+			.then((res) => {
+				this.props.navigator.push({
+					title: "Repos",
+					component: Repositories,
+					passProps: {
+						userInfo: this.props.userInfo,
+						repos: res
+					}
+				})
+			})
 	}
 	goToNotes() {
 		console.log('w/e')
