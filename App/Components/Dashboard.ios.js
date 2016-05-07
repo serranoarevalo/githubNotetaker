@@ -8,6 +8,8 @@ import {
 	Image
 } from 'react-native'
 
+import Profile from './Profile.ios.js'
+
 var styles = StyleSheet.create({
 	container: {
 		marginTop: 65,
@@ -44,7 +46,11 @@ class Dashboard extends Component{
 		return obj
 	}
 	goToProfile() {
-		console.log('w/e')
+		this.props.navigator.push({
+			title: 'Profile page',
+			component: Profile,
+			passProps: {userInfo: this.props.userInfo}
+		})
 	}
 	goToRepos() {
 		console.log('w/e')

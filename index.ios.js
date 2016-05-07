@@ -9,6 +9,7 @@ import {
 
 import Main from './App/Components/Main.ios.js'
 
+
 var styles = StyleSheet.create({
 	container: {
 		flex: 1,
